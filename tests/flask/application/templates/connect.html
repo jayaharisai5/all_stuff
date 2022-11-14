@@ -1,0 +1,192 @@
+{% include 'navbar.html' %}
+<h3>Where is your data?</h3>
+
+<table class="table">
+    <tbody>
+        <form action="{{ url_for("connect")}}" method="post">
+            <tr>
+                <td>Connect to s3</td>
+                <td><input type="submit" name="action1" value="Click here" id=""></td>
+            </tr>
+        </form>
+        <form action="{{ url_for("connect")}}" method="post">
+            <tr>
+                <td>Connect to data base</td>
+                <td>
+                    <select name="database_option" id="">
+                        <option value="mysql">MySQL</option>
+                    </select>
+                </td>
+                <td><input type="submit" name="action2" value="Click here" id=""></td>
+            </tr>
+        </form>
+<!--       <form action="{{ url_for("connect")}}" method="post">
+            <tr>
+                <td>Upload file</td>
+                <td><input type="submit" value="Click here" name="action3" id=""></td>
+            </tr>
+        </form>  --> 
+    </tbody>
+</table>
+
+{% if s3 %}
+<section class="s3">
+    <h1>Connect to s3</h1>
+<table class="table">
+    <tbody>
+       <form action="{{ url_for("connect")}}" method="post">
+        <tr>
+            <td><b><i>aws_access_key_id</i></b></td>
+            <td><input type="text" name="aws_access_key_id" placeholder="aws_access_key_id" id=""></td>
+        </tr>
+        <tr>
+            <td><b><i>aws_secret_access_key</i></b></td>
+            <td><input type="text" name="aws_secret_access_key" placeholder="aws_secret_access_key" id=""></td>
+        </tr>
+        <tr>
+            <td><b><i>region_name</i></b></td>
+            <td><input type="text" name="region_name" placeholder="region_name" id=""></td>
+            <td><input type="submit" value="Submit" name="action4" id=""></td>
+        </tr>
+       </form>
+    </tbody>
+</table>
+</section>
+{% endif %}
+
+<table>
+    {% if bucket_key %}
+    <h2>Where is your data in s3</h2>
+    <form action="{{ url_for('connect')}}" method="post">
+        <tr>
+            <td><b><i>bucket</i></b></td>
+            <td>
+                <select style="border: none;" name="bucket_option" id="">
+                    {% for bucket in bucket_name %}
+                    <option value="{{bucket}}">{{bucket}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type="submit" value="Check objects" name="action5" id=""></td>
+        </tr>
+    </form>
+ {% if key %}
+ <form action="{{ url_for('connect')}}" method="post">
+ <tr>
+     <td><b><i>key</i></b></td>
+     <td>
+         <select style="border: none;" name="key_value" id="">
+                {% for obj in objects %}
+             <option value="{{obj}}">{{obj}}</option>
+             {% endfor %}
+         </select>
+     </td>
+ </tr>
+ <tr>
+    <td> <input type="submit" value="Submit" name="action6" id=""></td>
+ </tr>
+</form>
+ {% endif %}
+
+    {% endif %}
+</table>
+
+{% if sucess %}
+<div >
+    <p class="sucess">Account details are saved  <a href="">View the data</a></p>
+</div>
+{% endif %}
+
+
+
+{% if db %}
+<section>
+    <h1>Connect to Database: {{database_option}}</h1>
+
+{% if mysql %}
+    <div>
+        <form action="{{ url_for('connect')}}" method="post">
+            <table>
+                <tr>
+                    <td><b><i>Host</i></b></td>
+                    <td><input type="text" name="localhost" placeholder="localhost" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Database Name</i></b></td>
+                    <td><input type="text" name="database_name" placeholder="database_name" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>User</i></b></td>
+                    <td><input type="text" name="user" placeholder="user" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Password</i></b></td>
+                    <td><input type="text" name="password" placeholder="password" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" name="action7" id=""></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+{% endif %}
+{% if snowflake %}
+    <div>
+        <form action="{{ url_for('connect')}}" method="post">
+            <table>
+                <tr>
+                    <td><b><i>User</i></b></td>
+                    <td><input type="text" name="user" placeholder="user" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Password</i></b></td>
+                    <td><input type="text" name="password" placeholder="password" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Account</i></b></td>
+                    <td><input type="text" name="account" placeholder="account" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Warehouse</i></b></td>
+                    <td><input type="text" name="warehouse" placeholder="warehouse" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Database</i></b></td>
+                    <td><input type="text" name="database" placeholder="database" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Schema</i></b></td>
+                    <td><input type="text" name="schema" placeholder="schema" id=""></td>
+                </tr>
+                <tr>
+                    <td><b><i>Role</i></b></td>
+                    <td><input type="text" name="role" placeholder="role" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" name="action8" id=""></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    {% endif %}
+</section>
+{% endif %}
+
+{% if databasee %}
+<h3>Select yout table</h3>
+<form action="{{ url_for('connect')}}" method="post">
+    <select name="table_option" id="">
+        {% for u in tabless %}
+        <option value="{{u}}">{{u}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Select table" name="action9" id="">
+</form>
+{% endif %}
+
+{% if upload %}
+<section>
+    <h1>Upload your file</h1>
+</section>
+{% endif %}

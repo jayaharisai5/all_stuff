@@ -1,0 +1,54 @@
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .logo{
+        margin: 0px;
+    }
+    .logo a{
+        text-decoration: none;
+    }
+    .menu ul{
+        display: flex;
+        list-style: none;
+        padding: 0px;
+    }
+    .menu ul li{
+        padding: 10px 2vh;
+    }
+    .menu ul li a{
+        text-decoration: none;
+    }
+    .navbar{
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+    }
+    .mlflow, .kubeflow{
+        background-color: blueviolet;
+        margin: 0px 5px;
+        border-radius: 10px;
+    }
+    .mlflow a, .kubeflow a{
+        color: white;
+    }
+</style>
+<div class="navbar">
+    <h1 class="logo"><a href="/">LOGO</a></h1>
+    <div class="menu">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="http://127.0.0.1:8000/home/">HOME</a></li>
+            <li><a href="http://127.0.0.1:8000/home/profile">PROFILE</a></li>
+            <li><a href="/logout">SIGNOUT</a></li>
+            
+            {% else %}
+            <li><a href="/signin">SIGNIN</a></li>
+            <li><a href="/signup">REGISTER</a></li>
+            <li class="mlflow"><a href="">MLFlow as a service</a></li>
+            <li class="kubeflow"><a href="">Kubeflow as a service</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="../static/cleaning.css">
+<div class="cleaning">
+        <h1 class="title">{{method}}</h1>
+    <div class="tables">
+        <h2 class="h2">{{analysis}}</h2><hr class="hr_h2">
+
+
+    <table>
+        <tr>
+            <td class="td_th">Columns</th>
+            <td class="td_th">Null vlaues</th>
+        </tr>
+        {% for i in  range(len_col) %}
+        <tr class="data">
+            <td >{{columns[i]}}</td>
+            <td >{{null_array[i]}}</td>
+        </tr>
+        {% endfor %}
+        
+    </table><hr class="hr_h2">
+    <p style="color: rgb(59, 59, 59);margin: 0px; ">These are the total null values <b style="color: blueviolet;">{{total_null}}</b></p>
+    </div >
+        <form class='action_button' method="post" action="http://localhost:5000/cleaning">
+            <p><b>What to do?</b></p>
+            <input class="action_btn" type="submit" value="REPLACE" name="action1" {{condition}} />
+            <input class="action_btn" type="submit" value="REMOVE" name="action2" {{condition}} />
+        </form>
+        <a href="http://localhost:5000/duplicates">Next: Start removing Duplicates</a>
+        <div class="action_options">
+            <h1>{{title}}</h1>
+        <p class="hwr">{{message}}</p>
+        {% if options %}
+        <div>
+            <p class="hwr">Select below options to replace</p>
+            <ol>
+                <li>Replace null/Nan values with mean</li>
+                <li>Replace null/Nan values with median</li>
+                <li>Replace null/Nan values with custom number</li>
+                <form action = "http://localhost:5000/replace" method = "POST" enctype = "multipart/form-data">
+                    <input class="option_number" type="number" name="option" id="">
+                    <input class="submit"  type = "submit"/>
+                </form>
+            </ol>
+        </div>
+        
+    {% endif %}
+
+    {% if optionss %}
+    <p class="hwr">Select below options to remove</p>
+    <ol>
+        <li>Drop All Rows with any Null/NaN/NaT Values</li>
+        <li>Drop All Columns with Any Missing Value</li>
+        <li>Dropping rows or columns only when all values are null</li>
+        <form action = "http://localhost:5000/remove" method = "POST" enctype = "multipart/form-data">
+            <input class="option_number" type="number" name="option" id="">
+            <input class="submit" type = "submit"/>
+        </form>
+    </ol>
+    {% endif %}
+        </div>
+    </div>
+
+    
+
+
+</div>

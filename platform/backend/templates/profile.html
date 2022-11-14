@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .background{
+        background-image: url('https://images.pexels.com/photos/1435075/pexels-photo-1435075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        background-repeat: no-repeat;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+    }
+    .profile{
+        margin:  0vh 20vh;
+    }
+    .dp{
+        margin: 10vh 0px 0px 10px;
+        border: 10px solid white;
+        border-radius: 50vh;
+        width: 20vh;
+    }
+    .name{
+
+        margin: 20vh;
+        color: white;
+    }
+</style>
+<div class="profile">
+    <div class="background">
+       <div> <img class="dp" width="10%" src="https://images.pexels.com/photos/245388/pexels-photo-245388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""></div>
+    <div class="name"><h1>{{request.user}}</h1></div>
+    </div>
+<i>bio</i>
+<p style="width: 20%;"><i>Lorem ipsum dolor sit amet consectetur 
+    adipisicing elit. Odit, blanditiis? Exercitationem quod magni 
+    nostrum cum eius aut ipsa. Sequi possimus corrupti aspernatur 
+    voluptatibus ad maiores? Sed modi porro eveniet repellendus?</i></p>
+</div>
+
+{% endblock content %}

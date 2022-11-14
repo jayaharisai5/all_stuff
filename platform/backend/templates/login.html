@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .menus{
+        list-style: none;
+        padding: 0px;
+        text-align: center;
+    }
+    .menus li{
+        margin: 1vh;
+    }
+    .menus li input{
+        width: 30vh;
+        border: none;
+        padding: 10px 10px;
+        font-size: 2vh;
+        background-color: rgb(250, 240, 255);
+        border-radius: 10px;
+    }    
+    .menus li .submit_me{
+        background-color: blueviolet;
+        color: white;
+        width: 32vh;
+    }
+    .register{
+        padding: 8vh 0vh;
+    }
+
+</style>
+
+<div class="register">
+    <form action="" method="POST">
+        {% csrf_token %}
+      
+      <ul class="menus login">
+          <h1>Login Here</h1>
+          <li>
+              <input
+          type="text"
+          name="username"
+          placeholder="Enter your MlAngles username"
+          id=""
+        />
+          </li>
+          <li>
+              <input
+              type="password"
+              name="pass_one"
+              placeholder="Enter your Password"
+              id=""
+            />
+          </li>
+          <li>
+              <input class="submit_me" type="submit" value="Login" name="" id="" />
+          </li>
+      </ul>
+        
+      </form>
+</div>
+<div>
+  {% for message in messages %}
+  <h5>{{message}}</h5>
+  {% endfor %}
+</div>
+{% endblock content %}

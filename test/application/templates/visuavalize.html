@@ -1,0 +1,34 @@
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="../static/visuavalize.css">
+<div class="Analysis">
+    <div class="data_analysis">
+        <h1 class="title">Data Analysis</h1>
+            <div>
+                <form action="/visuavalize", method="POST">
+                    <select class="select" name="option_one" id="">
+                        {% for a in col %}
+                        <option value="{{a}}">{{a}}</option>
+                        {% endfor %}
+                    </select>
+        
+                    <select class="select" name="option_two" id="">
+                        {% for a in col %}
+                        <option value="{{a}}">{{a}}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="btn-sub" type="submit" value="submit">
+                </form>
+            </div>
+            <p>Here we are displaying graph between {{option_one}} and {{option_two}}</p>
+    </div>
+    <div>
+        <div id='chart' class='chart'></div>
+    </div>
+    <hr>
+</div>
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>

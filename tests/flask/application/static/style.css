@@ -1,0 +1,14 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+.logo{
+    font-size: 4vh;
+}
+.sucess{
+    background-color: green;
+    color: white;
+    padding: 1vh;
+    border-radius: 10px;
+    width: fit-content;
+}

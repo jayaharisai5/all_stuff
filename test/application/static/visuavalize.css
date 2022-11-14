@@ -1,0 +1,45 @@
+.body{
+    padding: 0px;
+    margin: 0px;
+}
+.Analysis{
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    color: blueviolet;
+}
+.select{
+    border: none;
+    background-color: rgb(238, 238, 238);
+    font-size: 2.3vh;
+    padding: 0.5vh;
+    border-radius: 10px;
+}
+.btn-sub{
+    border: none;
+    background-color: orangered;
+    font-size: 2vh;
+    padding: 0.9vh 2vh;
+    color: white;
+    border-radius: 10px;
+}
+.btn-sub:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+    transform: scale(1.04);
+    transition: 100ms;
+}
+.btn-sub:active{
+    background-color: rgb(95, 0, 184);
+    transform: scale(0.98);
+    transition: 50ms;
+}
+.data_analysis{
+    margin: 0px 10vh;
+    padding: 0vh 20vh;
+}
+.chart{
+    position: relative;
+    left: 10vh;
+    width: 90%;
+}

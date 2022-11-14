@@ -1,0 +1,23 @@
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="../static/index.css">
+<div class="home">
+    <div class="upload_here">
+        <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
+            <input class="inp_file" type = "file" name = "file" />
+            <input class="submit" type = "submit"/>
+        </form>
+        
+    </div>
+    
+    <p class="causion">You have uploads {{file_name}}</p>
+    {% if condition %}
+        <div>
+            <span class="message">{{message}}</span>
+            <h1>Start your process..</h1>
+            <p>Start with the cleaning process</p>
+            <div class="start_process">
+                <a href="cleaning">Start cleaning <i class="bi bi-arrow-right-circle-fill"></i></a>
+            </div>
+        </div>
+    {% endif %}
+</div>
