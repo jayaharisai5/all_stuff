@@ -1,0 +1,18 @@
+<h1>Duplicates</h1>
+{{message}}
+{% if condition %}
+<a href="">Continue to next process</a>
+{% endif %}
+
+{% if con %}
+<p>Actions to be done for Duplicates</p>
+<ol>
+    <li>Delete</li>
+    <li>No action</li>
+</ol>
+<form action = "http://localhost:5000/duplicate" method = "POST" enctype = "multipart/form-data">
+    <input class="option_number" type="number" name="option" id="">
+    <input class="action_btn" type="submit" value="DUPLICATE_HERE" name="action4" {{disable}} />
+</form>
+{% endif %}
+

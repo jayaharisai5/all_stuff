@@ -1,0 +1,67 @@
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="../static/cleaning.css">
+<div class="cleaning">
+    <h1 class="clean_h1">Data Analysis and Cleaning</h1>
+<p class="clean_title">Handle with null vlaues</p>
+<table>
+    <tr>
+        <td class="table_head">Columns</td>
+        <td class="table_head">Null values</td>
+    </tr>
+    {% for i in  range(length) %}
+        <tr class="data">
+            <td>{{columns[i]}}</td>
+            <td>{{null_array[i]}}</td>
+        </tr>
+    {% endfor %}
+</table><hr>
+<p class="total">The total number of null values <b>{{adition_null}}</b></p>
+<p class="result">Shape of the dataset before handling with null values: <b>{{shape}}</b></p>
+<div>
+    <form class='action_button' method="post" action="http://localhost:5000/cleaning">
+        <p><b>What to do?</b></p>
+        <input class="action_btn" type="submit" value="REPLACE" name="action1" {{disable}} />
+        <input class="action_btn" type="submit" value="REMOVE" name="action2" {{disable}} />
+    </form>
+    {% if condition %}
+    <p>As above analysis there are no null values so the buttons are disabled</p>
+    <form action="http://localhost:5000/cleaning" method = "post">
+        <input class="action_btn" type="submit" value="Duplicates" name="action5" {{disable}} />
+    </form>
+    {% endif %}
+</div>
+{% if replace %}
+<p>Selete the below option for replacing the null values</p>
+<ol>
+    <li>Replace null/Nan values with mean</li>
+    <li>Replace null/Nan values with median</li>
+    <form action = "http://localhost:5000/cleaning" method = "POST" enctype = "multipart/form-data">
+        <input class="option_number" type="number" name="option" id="">
+        <input class="action_btn" type="submit" value="REPLACE_HERE" name="action3" {{disable}} />
+    </form>
+</ol>
+
+{% endif %}
+{% if remove %}
+<div class="block">
+    <p>Selete the below option for replacing the null values</p>
+<ol>
+    <li>Drop All Rows with any Null/NaN/NaT Values</li>
+    <li>Drop All Columns with Any Missing Value</li>
+    <li>Dropping rows or columns only when all values are null</li>
+    <div class="inputs">
+        <form action = "http://localhost:5000/cleaning" method = "POST" enctype = "multipart/form-data">
+            <input class="option_number" type="number" name="option" id="">
+            <input class="action_btn" type="submit" value="REMOVE_HERE" name="action4" {{disable}} />
+        </form>
+    </div>
+</ol>
+</div>
+
+{% endif %}
+<p>You have selected {{option}}</p>
+<p>{{message}}</p>
+<p>Shape of the data set after handling with null values: <b>{{after_shape}}</b></p>
+
+<a href="/duplicate">Handle with duplicates</a>
+</div>
